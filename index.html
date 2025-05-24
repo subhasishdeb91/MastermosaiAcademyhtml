@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Coaching Center - Mastermosai Academy</title>
+  <meta name="description" content="Coaching center for competitive government exams. Offline coaching, latest YouTube videos, courses, exams, and contact form." />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/i18next@21.6.14/i18next.min.js"></script>
+  <script src="https://unpkg.com/i18next-browser-languagedetector@6.1.4/i18nextBrowserLanguageDetector.min.js"></script>
+  <script src="https://unpkg.com/jquery@3.6.0/dist/jquery.min.js"></script>
+  <script src="https://unpkg.com/jquery-i18next@1.2.1/dist/umd/jquery-i18next.min.js"></script>
+</head>
+<body class="bg-gray-50 text-gray-800 font-sans">
+
+  <!-- Header -->
+  <header class="bg-blue-700 text-white p-4 sticky top-0 z-50">
+    <div class="container mx-auto flex justify-between items-center">
+      <h1 class="text-2xl font-bold">Mastermosai Academy</h1>
+      <nav class="space-x-4 hidden md:block">
+        <a href="#videos" class="hover:underline">Latest Videos</a>
+        <a href="#courses" class="hover:underline">Courses</a>
+        <a href="#exams" class="hover:underline">Exams</a>
+        <a href="#contact" class="hover:underline">Contact</a>
+      </nav>
+      <button id="menu-btn" class="md:hidden focus:outline-none">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" >
+          <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/>
+        </svg>
+      </button>
+      <div class="flex items-center space-x-4">
+      <!-- Translate button and widget removed as per user request -->
+      </div>
+    </div>
+    <nav id="mobile-menu" class="hidden bg-blue-600 md:hidden">
+      <a href="#videos" class="block px-4 py-2 hover:bg-blue-500">Latest Videos</a>
+      <a href="#courses" class="block px-4 py-2 hover:bg-blue-500">Courses</a>
+      <a href="#exams" class="block px-4 py-2 hover:bg-blue-500">Exams</a>
+      <a href="#contact" class="block px-4 py-2 hover:bg-blue-500">Contact</a>
+    </nav>
+  </header>
+
+  <!-- Slider Banner Section -->
+  <section class="relative w-full overflow-hidden">
+    <div class="relative h-64 md:h-96">
+      <div class="absolute inset-0 transition-opacity duration-1000 ease-in-out opacity-100" style="background-image: url('images/banner1.jpg'); background-size: cover; background-position: center;" data-slide="0"></div>
+      <div class="absolute inset-0 transition-opacity duration-1000 ease-in-out opacity-0" style="background-image: url('images/banner2.jpg'); background-size: cover; background-position: center;" data-slide="1"></div>
+      <div class="absolute inset-0 transition-opacity duration-1000 ease-in-out opacity-0" style="background-image: url('images/banner3.jpg'); background-size: cover; background-position: center;" data-slide="2"></div>
+
+      <div class="absolute inset-0 bg-black bg-opacity-40 flex flex-col justify-center items-center text-center text-white px-4">
+        <div data-text="0" class="slide-text">
+          <h2 class="text-3xl md:text-5xl font-extrabold mb-4">Achieve Your Dream Government Job</h2>
+          <p class="text-lg md:text-xl mb-8 max-w-2xl">Join our coaching center for offline classes and expert guidance for competitive government exams.</p>
+          <a href="#contact" class="inline-block bg-yellow-400 text-blue-900 font-bold px-6 py-3 rounded shadow hover:bg-yellow-300 transition">Enquire Now</a>
+        </div>
+        <div data-text="1" class="slide-text hidden">
+          <h2 class="text-3xl md:text-5xl font-extrabold mb-4">Prepare for SSC and Bank Exams</h2>
+          <p class="text-lg md:text-xl mb-8 max-w-2xl">Expert coaching to help you succeed in SSC and Bank PO exams.</p>
+          <a href="#contact" class="inline-block bg-yellow-400 text-blue-900 font-bold px-6 py-3 rounded shadow hover:bg-yellow-300 transition">Join Now</a>
+        </div>
+        <div data-text="2" class="slide-text hidden">
+          <h2 class="text-3xl md:text-5xl font-extrabold mb-4">Excel in Railway and State PSC Exams</h2>
+          <p class="text-lg md:text-xl mb-8 max-w-2xl">Comprehensive training for Railway and State PSC competitive exams.</p>
+          <a href="#contact" class="inline-block bg-yellow-400 text-blue-900 font-bold px-6 py-3 rounded shadow hover:bg-yellow-300 transition">Get Started</a>
+        </div>
+      </div>
+
+      <!-- Navigation Buttons -->
+      <button id="prevSlide" class="absolute left-4 top-1/2 transform -translate-y-1/2 bg-black bg-opacity-50 text-white rounded-full p-2 hover:bg-opacity-75 focus:outline-none">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" />
+        </svg>
+      </button>
+      <button id="nextSlide" class="absolute right-4 top-1/2 transform -translate-y-1/2 bg-black bg-opacity-50 text-white rounded-full p-2 hover:bg-opacity-75 focus:outline-none">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
+        </svg>
+      </button>
+    </div>
+  </section>
+  <script>(()=>{const e=document.querySelectorAll("[data-slide]");let t=0,n=e.length;const o=e=>{e.forEach((e,t)=>{e.style.opacity=t===e?"1":"0"})},r=()=>{t=(t+1)%n,o(t)},i=()=>{t=(t-1+n)%n,o(t)};document.getElementById("nextSlide").addEventListener("click",r),document.getElementById("prevSlide").addEventListener("click",i),o(t),setInterval(r,5e3)})();</script>
+
+  <!-- Gallery Section -->
+  <section id="gallery" class="max-w-6xl mx-auto p-6 bg-white rounded shadow my-12">
+    <h2 class="text-3xl font-semibold mb-6 text-center">Gallery</h2>
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+      <div class="aspect-w-16 aspect-h-9 rounded shadow overflow-hidden">
+        <img src="images/gallery1.jpg" alt="Gallery Image 1" class="w-full h-full object-cover" />
+      </div>
+      <div class="aspect-w-16 aspect-h-9 rounded shadow overflow-hidden">
+        <img src="images/gallery2.jpg" alt="Gallery Image 2" class="w-full h-full object-cover" />
+      </div>
+      <div class="aspect-w-16 aspect-h-9 rounded shadow overflow-hidden">
+        <img src="images/gallery3.jpg" alt="Gallery Image 3" class="w-full h-full object-cover" />
+      </div>
+      <div class="aspect-w-16 aspect-h-9 rounded shadow overflow-hidden">
+        <img src="images/gallery4.jpg" alt="Gallery Image 4" class="w-full h-full object-cover" />
+      </div>
+      <div class="aspect-w-16 aspect-h-9 rounded shadow overflow-hidden">
+        <img src="images/gallery5.jpg" alt="Gallery Image 5" class="w-full h-full object-cover" />
+      </div>
+      <div class="aspect-w-16 aspect-h-9 rounded shadow overflow-hidden">
+        <img src="images/gallery6.jpg" alt="Gallery Image 6" class="w-full h-full object-cover" />
+      </div>
+    </div>
+  </section>
+
+  <main class="container mx-auto p-4 space-y-16">
+
+    <!-- Latest Notification -->
+    <section id="notifications" class="bg-white rounded shadow p-6">
+      <h2 class="text-3xl font-semibold mb-6" data-i18n="notifications.title">Latest Notification</h2>
+      <ul class="list-disc list-inside space-y-2 text-lg">
+        <li data-i18n="notifications.item1">New batch starting from 1st July 2024. Enroll now!</li>
+        <li data-i18n="notifications.item2">Holiday on 15th August for Independence Day.</li>
+        <li data-i18n="notifications.item3">Free seminar on exam strategies on 20th June.</li>
+      </ul>
+    </section>
+
+    <!-- Upcoming Exams -->
+    <section id="upcoming-exams" class="bg-white rounded shadow p-6">
+      <h2 class="text-3xl font-semibold mb-6" data-i18n="upcomingExams.title">Upcoming Exams</h2>
+      <ul class="list-disc list-inside space-y-2 text-lg">
+        <li data-i18n="upcomingExams.item1">UPSC Prelims - 15th August 2024</li>
+        <li data-i18n="upcomingExams.item2">SSC CGL Tier 1 - 10th September 2024</li>
+        <li data-i18n="upcomingExams.item3">Bank PO Mains - 5th October 2024</li>
+      </ul>
+    </section>
+
+    <!-- Latest YouTube Videos -->
+    <section id="videos">
+      <h2 class="text-3xl font-semibold mb-6" data-i18n="videos.title">Latest YouTube Videos</h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <!-- Sample embedded videos -->
+      <div class="rounded overflow-hidden shadow-lg">
+        <iframe class="w-full" style="aspect-ratio: auto;" src="https://www.youtube.com/embed/dQw4w9WgXcQ" title="YouTube video 1" frameborder="0" allowfullscreen></iframe>
+      </div>
+      <div class="rounded overflow-hidden shadow-lg">
+        <iframe class="w-full" style="aspect-ratio: auto;" src="https://www.youtube.com/embed/3JZ_D3ELwOQ" title="YouTube video 2" frameborder="0" allowfullscreen></iframe>
+      </div>
+      <div class="rounded overflow-hidden shadow-lg">
+        <iframe class="w-full" style="aspect-ratio: auto;" src="https://www.youtube.com/embed/L_jWHffIx5E" title="YouTube video 3" frameborder="0" allowfullscreen></iframe>
+      </div>
+      </div>
+      </section>
+      <div class="text-center mb-12">
+        <a href="https://www.youtube.com/@MastermosaiAcademy" target="_blank" rel="noopener" class="inline-block bg-blue-700 text-white px-6 py-3 rounded shadow hover:bg-blue-800 transition">More Videos</a>
+      </div>
+
+    <!-- Courses -->
+    <section id="courses">
+      <h2 class="text-3xl font-semibold mb-6" data-i18n="courses.title">Our Courses</h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div class="bg-white rounded shadow p-6 flex items-center space-x-4">
+          <img src="images/book.png" alt="General Studies" class="w-12 h-12" />
+          <span class="text-lg font-medium" data-i18n="courses.generalStudies">General Studies</span>
+        </div>
+        <div class="bg-white rounded shadow p-6 flex items-center space-x-4">
+          <img src="images/calculator.png" alt="Quantitative Aptitude" class="w-12 h-12" />
+          <span class="text-lg font-medium" data-i18n="courses.quantitativeAptitude">Quantitative Aptitude</span>
+        </div>
+        <div class="bg-white rounded shadow p-6 flex items-center space-x-4">
+          <img src="images/open-book--v1.png" alt="English Language" class="w-12 h-12" />
+          <span class="text-lg font-medium" data-i18n="courses.englishLanguage">English Language</span>
+        </div>
+        <div class="bg-white rounded shadow p-6 flex items-center space-x-4">
+          <img src="images/brain.png" alt="Reasoning Ability" class="w-12 h-12" />
+          <span class="text-lg font-medium" data-i18n="courses.reasoningAbility">Reasoning Ability</span>
+        </div>
+        <div class="bg-white rounded shadow p-6 flex items-center space-x-4">
+          <img src="images/news.png" alt="Current Affairs" class="w-12 h-12" />
+          <span class="text-lg font-medium" data-i18n="courses.currentAffairs">Current Affairs</span>
+        </div>
+        <div class="bg-white rounded shadow p-6 flex items-center space-x-4">
+          <img src="images/microphone.png" alt="Interview Preparation" class="w-12 h-12" />
+          <span class="text-lg font-medium" data-i18n="courses.interviewPreparation">Interview Preparation</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Exams -->
+    <section id="exams">
+      <h2 class="text-3xl font-semibold mb-6" data-i18n="exams.title">Exams We Coach For</h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div class="bg-white rounded shadow p-6 flex items-center space-x-4">
+          <img src="images/medal.png" alt="UPSC Civil Services" class="w-12 h-12" />
+          <span class="text-lg font-medium" data-i18n="exams.upsc">UPSC Civil Services</span>
+        </div>
+        <div class="bg-white rounded shadow p-6 flex items-center space-x-4">
+          <img src="images/briefcase.png" alt="SSC CGL" class="w-12 h-12" />
+          <span class="text-lg font-medium" data-i18n="exams.ssc">SSC CGL</span>
+        </div>
+        <div class="bg-white rounded shadow p-6 flex items-center space-x-4">
+          <img src="images/bank-building.png" alt="Bank PO" class="w-12 h-12" />
+          <span class="text-lg font-medium" data-i18n="exams.bankPO">Bank PO</span>
+        </div>
+        <div class="bg-white rounded shadow p-6 flex items-center space-x-4">
+          <img src="images/train.png" alt="Railway Recruitment" class="w-12 h-12" />
+          <span class="text-lg font-medium" data-i18n="exams.railway">Railway Recruitment</span>
+        </div>
+        <div class="bg-white rounded shadow p-6 flex items-center space-x-4">
+          <img src="images/flag.png" alt="State PSC Exams" class="w-12 h-12" />
+          <span class="text-lg font-medium" data-i18n="exams.statePSC">State PSC Exams</span>
+        </div>
+        <div class="bg-white rounded shadow p-6 flex items-center space-x-4">
+          <img src="images/shield.png" alt="Defence Exams" class="w-12 h-12" />
+          <span class="text-lg font-medium" data-i18n="exams.defence">Defence Exams</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section id="testimonials" class="bg-white rounded shadow p-8">
+      <h2 class="text-3xl font-semibold mb-6 text-center" data-i18n="testimonials.title">What Our Students Say</h2>
+      <div class="space-y-6 max-w-3xl mx-auto">
+        <blockquote class="border-l-4 border-blue-700 pl-4 italic text-gray-700" data-i18n="testimonials.testimonial1">
+          "The coaching center helped me clear my UPSC exam with confidence. The teachers are very supportive and knowledgeable."
+          <footer class="mt-2 font-semibold">- Priya S.</footer>
+        </blockquote>
+        <blockquote class="border-l-4 border-blue-700 pl-4 italic text-gray-700" data-i18n="testimonials.testimonial2">
+          "Excellent coaching with a focus on practical knowledge and interview preparation. Highly recommended!"
+          <footer class="mt-2 font-semibold">- Rahul K.</footer>
+        </blockquote>
+      </div>
+    </section>
+
+    <!-- Features -->
+    <section id="features" class="space-y-6 text-center">
+      <h2 class="text-3xl font-semibold mb-6" data-i18n="features.title">Why Choose Us?</h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto">
+        <div class="bg-white rounded shadow p-6">
+          <img src="https://img.icons8.com/ios-filled/50/000000/teacher.png" alt="Expert Faculty" class="mx-auto mb-4" />
+          <h3 class="text-xl font-semibold mb-2" data-i18n="features.expertFaculty">Expert Faculty</h3>
+          <p data-i18n="features.expertFacultyDesc">Learn from experienced teachers with proven success records.</p>
+        </div>
+        <div class="bg-white rounded shadow p-6">
+          <img src="https://img.icons8.com/ios-filled/50/000000/classroom.png" alt="Offline Classes" class="mx-auto mb-4" />
+          <h3 class="text-xl font-semibold mb-2" data-i18n="features.offlineClasses">Offline Classes</h3>
+          <p data-i18n="features.offlineClassesDesc">Interactive offline coaching sessions for better learning.</p>
+        </div>
+        <div class="bg-white rounded shadow p-6">
+          <img src="https://img.icons8.com/ios-filled/50/000000/clock.png" alt="Flexible Schedule" class="mx-auto mb-4" />
+          <h3 class="text-xl font-semibold mb-2" data-i18n="features.flexibleSchedule">Flexible Schedule</h3>
+          <p data-i18n="features.flexibleScheduleDesc">Classes scheduled to fit your convenience and pace.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact Form -->
+    <section id="contact">
+      <h2 class="text-3xl font-semibold mb-6" data-i18n="contact.title">Contact Us</h2>
+      <form class="max-w-lg space-y-4 mx-auto" id="contact-form" action="#" method="POST">
+        <div>
+          <label for="name" class="block font-medium mb-1" data-i18n="contact.name">Name</label>
+          <input type="text" id="name" name="name" required class="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500" />
+        </div>
+        <div>
+          <label for="phone" class="block font-medium mb-1">Phone Number</label>
+          <input type="tel" id="phone" name="phone" required class="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500" />
+        </div>
+        <div>
+          <label for="email" class="block font-medium mb-1" data-i18n="contact.email">Email</label>
+          <input type="email" id="email" name="email" required class="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500" />
+        </div>
+        <div>
+          <label for="message" class="block font-medium mb-1" data-i18n="contact.message">Message</label>
+          <textarea id="message" name="message" rows="4" required class="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"></textarea>
+        </div>
+        <button type="submit" class="bg-blue-700 text-white px-6 py-2 rounded hover:bg-blue-800 transition" data-i18n="contact.send">Send Enquiry</button>
+      </form>
+    </section>
+
+  </main>
+
+  <!-- FAQ Section -->
+  <section id="faq" class="max-w-4xl mx-auto p-6 bg-white rounded shadow my-12">
+    <h2 class="text-3xl font-semibold mb-6 text-center" data-i18n="faq.title">Frequently Asked Questions</h2>
+    <div class="space-y-4">
+      <details class="border border-gray-300 rounded p-4">
+        <summary class="font-medium cursor-pointer" data-i18n="faq.q1">What exams do you provide coaching for?</summary>
+        <p class="mt-2 text-gray-700" data-i18n="faq.a1">We provide coaching for UPSC, SSC, Bank PO, Railway, State PSC, and Defence exams.</p>
+      </details>
+      <details class="border border-gray-300 rounded p-4">
+        <summary class="font-medium cursor-pointer" data-i18n="faq.q2">Are the classes offline or online?</summary>
+        <p class="mt-2 text-gray-700" data-i18n="faq.a2">Our coaching is primarily offline with interactive classroom sessions.</p>
+      </details>
+      <details class="border border-gray-300 rounded p-4">
+        <summary class="font-medium cursor-pointer" data-i18n="faq.q3">How can I contact the coaching center?</summary>
+        <p class="mt-2 text-gray-700" data-i18n="faq.a3">You can use the contact form on this page or call us at +1-234-567-890.</p>
+      </details>
+      <details class="border border-gray-300 rounded p-4">
+        <summary class="font-medium cursor-pointer" data-i18n="faq.q4">Do you provide study materials?</summary>
+        <p class="mt-2 text-gray-700" data-i18n="faq.a4">Yes, we provide comprehensive study materials as part of our courses.</p>
+      </details>
+      <details class="border border-gray-300 rounded p-4">
+        <summary class="font-medium cursor-pointer" data-i18n="faq.q5">What is the duration of the courses?</summary>
+        <p class="mt-2 text-gray-700" data-i18n="faq.a5">Our courses typically range from 3 to 12 months depending on the exam and syllabus.</p>
+      </details>
+      <details class="border border-gray-300 rounded p-4">
+        <summary class="font-medium cursor-pointer" data-i18n="faq.q6">Do you offer any mock tests?</summary>
+        <p class="mt-2 text-gray-700" data-i18n="faq.a6">Yes, we conduct regular mock tests to help students assess their preparation.</p>
+      </details>
+      <details class="border border-gray-300 rounded p-4">
+        <summary class="font-medium cursor-pointer" data-i18n="faq.q7">Are there any scholarships available?</summary>
+        <p class="mt-2 text-gray-700" data-i18n="faq.a7">We offer scholarships based on merit and financial need. Please contact us for details.</p>
+      </details>
+      <details class="border border-gray-300 rounded p-4">
+        <summary class="font-medium cursor-pointer" data-i18n="faq.q8">What is the batch size?</summary>
+        <p class="mt-2 text-gray-700" data-i18n="faq.a8">Our batch sizes are kept small to ensure personalized attention.</p>
+      </details>
+      <details class="border border-gray-300 rounded p-4">
+        <summary class="font-medium cursor-pointer" data-i18n="faq.q9">Can I switch courses after enrollment?</summary>
+        <p class="mt-2 text-gray-700" data-i18n="faq.a9">Yes, course switching is possible within the first two weeks of enrollment.</p>
+      </details>
+    </div>
+  </section>
+
+  <footer class="bg-blue-700 text-white p-4 text-center space-y-2">
+    <p>© 2024 Coaching Center. All rights reserved.</p>
+    <p>
+      <a href="https://www.youtube.com/@MastermosaiAcademy" target="_blank" rel="noopener" class="underline hover:text-gray-300" data-i18n="footer.youtube">YouTube Channel</a>
+    </p>
+    </footer>
+
+    <!-- Sticky Call Now Button -->
+    <a href="tel:+1234567890" class="fixed bottom-6 right-6 bg-yellow-400 text-blue-900 font-bold px-6 py-3 rounded shadow-lg hover:bg-yellow-300 transition z-50" title="Call Now">
+      Call Now
+    </a>
+
+    <script>
+      // Mobile menu toggle
+      const menuBtn = document.getElementById('menu-btn');
+      const mobileMenu = document.getElementById('mobile-menu');
+      menuBtn.addEventListener('click', () => {
+        mobileMenu.classList.toggle('hidden');
+      });
+
+      // Contact form submission handler (dummy)
+      const contactForm = document.getElementById('contact-form');
+      contactForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        alert('Thank you for your enquiry. We will get back to you soon.');
+        contactForm.reset();
+      });
+
+    </script>
+
+  </body>
+  </html>
