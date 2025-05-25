@@ -5,11 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Coaching Center - Mastermosai Academy</title>
   <meta name="description" content="Coaching center for competitive government exams. Offline coaching, latest YouTube videos, courses, exams, and contact form." />
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script src="https://unpkg.com/i18next@21.6.14/i18next.min.js"></script>
-  <script src="https://unpkg.com/i18next-browser-languagedetector@6.1.4/i18nextBrowserLanguageDetector.min.js"></script>
-  <script src="https://unpkg.com/jquery@3.6.0/dist/jquery.min.js"></script>
-  <script src="https://unpkg.com/jquery-i18next@1.2.1/dist/umd/jquery-i18next.min.js"></script>
+  <link rel="preconnect" href="https://cdn.tailwindcss.com" />
+  <link rel="preconnect" href="https://www.youtube.com" />
+  <script src="https://cdn.tailwindcss.com" async></script>
 </head>
 <body class="bg-gray-50 text-gray-800 font-sans">
 
@@ -17,26 +15,35 @@
   <header class="bg-blue-700 text-white p-4 sticky top-0 z-50">
     <div class="container mx-auto flex justify-between items-center">
       <h1 class="text-2xl font-bold">Mastermosai Academy</h1>
-      <nav class="space-x-4 hidden md:block">
+      
+<div>
+<nav class="space-x-4 hidden md:flex items-center">
         <a href="#videos" class="hover:underline">Latest Videos</a>
         <a href="#courses" class="hover:underline">Courses</a>
         <a href="#exams" class="hover:underline">Exams</a>
         <a href="#contact" class="hover:underline">Contact</a>
-      </nav>
-      <button id="menu-btn" class="md:hidden focus:outline-none">
-        <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" >
-          <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/>
-        </svg>
-      </button>
-      <div class="flex items-center space-x-4">
-      <!-- Translate button and widget removed as per user request -->
+        <a href="https://wa.me/1234567890" target="_blank" rel="noopener" class="ml-4">
+          <img src="images/whatsapp-icon.png" alt="WhatsApp" class="w-6 h-6 inline" loading="lazy" />
+        </a>
+       </nav>
+    
+        <button id="menu-btn" class="md:hidden focus:outline-none">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" >
+            <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/>
+          </svg>
+        </button>
+        
       </div>
+      
     </div>
     <nav id="mobile-menu" class="hidden bg-blue-600 md:hidden">
       <a href="#videos" class="block px-4 py-2 hover:bg-blue-500">Latest Videos</a>
       <a href="#courses" class="block px-4 py-2 hover:bg-blue-500">Courses</a>
       <a href="#exams" class="block px-4 py-2 hover:bg-blue-500">Exams</a>
       <a href="#contact" class="block px-4 py-2 hover:bg-blue-500">Contact</a>
+      <a href="https://wa.me/1234567890" target="_blank" rel="noopener" class="block px-4 py-2 hover:bg-blue-500">
+        <img src="images/whatsapp-icon.png" alt="WhatsApp" class="w-6 h-6 inline" loading="lazy" />
+      </a>
     </nav>
   </header>
 
@@ -44,8 +51,8 @@
   <section class="relative w-full overflow-hidden">
     <div class="relative h-64 md:h-96">
       <div class="absolute inset-0 transition-opacity duration-1000 ease-in-out opacity-100" style="background-image: url('images/banner1.jpg'); background-size: cover; background-position: center;" data-slide="0"></div>
-      <div class="absolute inset-0 transition-opacity duration-1000 ease-in-out opacity-0" style="background-image: url('images/banner2.jpg'); background-size: cover; background-position: center;" data-slide="1"></div>
-      <div class="absolute inset-0 transition-opacity duration-1000 ease-in-out opacity-0" style="background-image: url('images/banner3.jpg'); background-size: cover; background-position: center;" data-slide="2"></div>
+      <div class="absolute inset-0 transition-opacity duration-1000 ease-in-out opacity-0" data-bg="images/banner2.jpg" style="background-size: cover; background-position: center;" data-slide="1"></div>
+      <div class="absolute inset-0 transition-opacity duration-1000 ease-in-out opacity-0" data-bg="images/banner3.jpg" style="background-size: cover; background-position: center;" data-slide="2"></div>
 
       <div class="absolute inset-0 bg-black bg-opacity-40 flex flex-col justify-center items-center text-center text-white px-4">
         <div data-text="0" class="slide-text">
@@ -78,29 +85,68 @@
       </button>
     </div>
   </section>
-  <script>(()=>{const e=document.querySelectorAll("[data-slide]");let t=0,n=e.length;const o=e=>{e.forEach((e,t)=>{e.style.opacity=t===e?"1":"0"})},r=()=>{t=(t+1)%n,o(t)},i=()=>{t=(t-1+n)%n,o(t)};document.getElementById("nextSlide").addEventListener("click",r),document.getElementById("prevSlide").addEventListener("click",i),o(t),setInterval(r,5e3)})();</script>
+  <script>
+    (() => {
+      const slides = document.querySelectorAll("[data-slide]");
+      let current = 0;
+      const total = slides.length;
+
+      const showSlide = (index) => {
+        slides.forEach((slide, i) => {
+          if (i === index) {
+            slide.style.opacity = "1";
+            // Lazy load background image if not loaded
+            if (!slide.style.backgroundImage || slide.style.backgroundImage === 'none') {
+              const bg = slide.getAttribute("data-bg");
+              if (bg) {
+                slide.style.backgroundImage = `url('${bg}')`;
+              }
+            }
+          } else {
+            slide.style.opacity = "0";
+          }
+        });
+      };
+
+      const nextSlide = () => {
+        current = (current + 1) % total;
+        showSlide(current);
+      };
+
+      const prevSlide = () => {
+        current = (current - 1 + total) % total;
+        showSlide(current);
+      };
+
+      document.getElementById("nextSlide").addEventListener("click", nextSlide);
+      document.getElementById("prevSlide").addEventListener("click", prevSlide);
+
+      showSlide(current);
+      setInterval(nextSlide, 5000);
+    })();
+  </script>
 
   <!-- Gallery Section -->
   <section id="gallery" class="max-w-6xl mx-auto p-6 bg-white rounded shadow my-12">
     <h2 class="text-3xl font-semibold mb-6 text-center">Gallery</h2>
     <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
       <div class="aspect-w-16 aspect-h-9 rounded shadow overflow-hidden">
-        <img src="images/gallery1.jpg" alt="Gallery Image 1" class="w-full h-full object-cover" />
+        <img src="images/gallery1.jpg" alt="Gallery Image 1" class="w-full h-full object-cover" loading="lazy" />
       </div>
       <div class="aspect-w-16 aspect-h-9 rounded shadow overflow-hidden">
-        <img src="images/gallery2.jpg" alt="Gallery Image 2" class="w-full h-full object-cover" />
+        <img src="images/gallery2.jpg" alt="Gallery Image 2" class="w-full h-full object-cover" loading="lazy" />
       </div>
       <div class="aspect-w-16 aspect-h-9 rounded shadow overflow-hidden">
-        <img src="images/gallery3.jpg" alt="Gallery Image 3" class="w-full h-full object-cover" />
+        <img src="images/gallery3.jpg" alt="Gallery Image 3" class="w-full h-full object-cover" loading="lazy" />
       </div>
       <div class="aspect-w-16 aspect-h-9 rounded shadow overflow-hidden">
-        <img src="images/gallery4.jpg" alt="Gallery Image 4" class="w-full h-full object-cover" />
+        <img src="images/gallery4.jpg" alt="Gallery Image 4" class="w-full h-full object-cover" loading="lazy" />
       </div>
       <div class="aspect-w-16 aspect-h-9 rounded shadow overflow-hidden">
-        <img src="images/gallery5.jpg" alt="Gallery Image 5" class="w-full h-full object-cover" />
+        <img src="images/gallery5.jpg" alt="Gallery Image 5" class="w-full h-full object-cover" loading="lazy" />
       </div>
       <div class="aspect-w-16 aspect-h-9 rounded shadow overflow-hidden">
-        <img src="images/gallery6.jpg" alt="Gallery Image 6" class="w-full h-full object-cover" />
+        <img src="images/gallery6.jpg" alt="Gallery Image 6" class="w-full h-full object-cover" loading="lazy" />
       </div>
     </div>
   </section>
@@ -109,37 +155,37 @@
 
     <!-- Latest Notification -->
     <section id="notifications" class="bg-white rounded shadow p-6">
-      <h2 class="text-3xl font-semibold mb-6" data-i18n="notifications.title">Latest Notification</h2>
+      <h2 class="text-3xl font-semibold mb-6">Latest Notification</h2>
       <ul class="list-disc list-inside space-y-2 text-lg">
-        <li data-i18n="notifications.item1">New batch starting from 1st July 2024. Enroll now!</li>
-        <li data-i18n="notifications.item2">Holiday on 15th August for Independence Day.</li>
-        <li data-i18n="notifications.item3">Free seminar on exam strategies on 20th June.</li>
+        <li>New batch starting from 1st July 2024. Enroll now!</li>
+        <li>Holiday on 15th August for Independence Day.</li>
+        <li>Free seminar on exam strategies on 20th June.</li>
       </ul>
     </section>
 
     <!-- Upcoming Exams -->
     <section id="upcoming-exams" class="bg-white rounded shadow p-6">
-      <h2 class="text-3xl font-semibold mb-6" data-i18n="upcomingExams.title">Upcoming Exams</h2>
+      <h2 class="text-3xl font-semibold mb-6">Upcoming Exams</h2>
       <ul class="list-disc list-inside space-y-2 text-lg">
-        <li data-i18n="upcomingExams.item1">UPSC Prelims - 15th August 2024</li>
-        <li data-i18n="upcomingExams.item2">SSC CGL Tier 1 - 10th September 2024</li>
-        <li data-i18n="upcomingExams.item3">Bank PO Mains - 5th October 2024</li>
+        <li>UPSC Prelims - 15th August 2024</li>
+        <li>SSC CGL Tier 1 - 10th September 2024</li>
+        <li>Bank PO Mains - 5th October 2024</li>
       </ul>
     </section>
 
     <!-- Latest YouTube Videos -->
     <section id="videos">
-      <h2 class="text-3xl font-semibold mb-6" data-i18n="videos.title">Latest YouTube Videos</h2>
+      <h2 class="text-3xl font-semibold mb-6">Latest YouTube Videos</h2>
       <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
         <!-- Sample embedded videos -->
       <div class="rounded overflow-hidden shadow-lg">
-        <iframe class="w-full" style="aspect-ratio: auto;" src="https://www.youtube.com/embed/dQw4w9WgXcQ" title="YouTube video 1" frameborder="0" allowfullscreen></iframe>
+        <iframe class="w-full" style="aspect-ratio: auto;" src="https://www.youtube.com/embed/dQw4w9WgXcQ" title="YouTube video 1" frameborder="0" allowfullscreen loading="lazy"></iframe>
       </div>
       <div class="rounded overflow-hidden shadow-lg">
-        <iframe class="w-full" style="aspect-ratio: auto;" src="https://www.youtube.com/embed/3JZ_D3ELwOQ" title="YouTube video 2" frameborder="0" allowfullscreen></iframe>
+        <iframe class="w-full" style="aspect-ratio: auto;" src="https://www.youtube.com/embed/3JZ_D3ELwOQ" title="YouTube video 2" frameborder="0" allowfullscreen loading="lazy"></iframe>
       </div>
       <div class="rounded overflow-hidden shadow-lg">
-        <iframe class="w-full" style="aspect-ratio: auto;" src="https://www.youtube.com/embed/L_jWHffIx5E" title="YouTube video 3" frameborder="0" allowfullscreen></iframe>
+        <iframe class="w-full" style="aspect-ratio: auto;" src="https://www.youtube.com/embed/L_jWHffIx5E" title="YouTube video 3" frameborder="0" allowfullscreen loading="lazy"></iframe>
       </div>
       </div>
       </section>
@@ -149,75 +195,75 @@
 
     <!-- Courses -->
     <section id="courses">
-      <h2 class="text-3xl font-semibold mb-6" data-i18n="courses.title">Our Courses</h2>
+      <h2 class="text-3xl font-semibold mb-6">Our Courses</h2>
       <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
         <div class="bg-white rounded shadow p-6 flex items-center space-x-4">
-          <img src="images/book.png" alt="General Studies" class="w-12 h-12" />
-          <span class="text-lg font-medium" data-i18n="courses.generalStudies">General Studies</span>
+          <img src="images/book.png" alt="General Studies" class="w-12 h-12" loading="lazy" />
+          <span class="text-lg font-medium">General Studies</span>
         </div>
         <div class="bg-white rounded shadow p-6 flex items-center space-x-4">
-          <img src="images/calculator.png" alt="Quantitative Aptitude" class="w-12 h-12" />
-          <span class="text-lg font-medium" data-i18n="courses.quantitativeAptitude">Quantitative Aptitude</span>
+          <img src="images/calculator.png" alt="Quantitative Aptitude" class="w-12 h-12" loading="lazy" />
+          <span class="text-lg font-medium">Quantitative Aptitude</span>
         </div>
         <div class="bg-white rounded shadow p-6 flex items-center space-x-4">
-          <img src="images/open-book--v1.png" alt="English Language" class="w-12 h-12" />
-          <span class="text-lg font-medium" data-i18n="courses.englishLanguage">English Language</span>
+          <img src="images/open-book--v1.png" alt="English Language" class="w-12 h-12" loading="lazy" />
+          <span class="text-lg font-medium">English Language</span>
         </div>
         <div class="bg-white rounded shadow p-6 flex items-center space-x-4">
-          <img src="images/brain.png" alt="Reasoning Ability" class="w-12 h-12" />
-          <span class="text-lg font-medium" data-i18n="courses.reasoningAbility">Reasoning Ability</span>
+          <img src="images/brain.png" alt="Reasoning Ability" class="w-12 h-12" loading="lazy" />
+          <span class="text-lg font-medium">Reasoning Ability</span>
         </div>
         <div class="bg-white rounded shadow p-6 flex items-center space-x-4">
-          <img src="images/news.png" alt="Current Affairs" class="w-12 h-12" />
-          <span class="text-lg font-medium" data-i18n="courses.currentAffairs">Current Affairs</span>
+          <img src="images/news.png" alt="Current Affairs" class="w-12 h-12" loading="lazy" />
+          <span class="text-lg font-medium">Current Affairs</span>
         </div>
         <div class="bg-white rounded shadow p-6 flex items-center space-x-4">
-          <img src="images/microphone.png" alt="Interview Preparation" class="w-12 h-12" />
-          <span class="text-lg font-medium" data-i18n="courses.interviewPreparation">Interview Preparation</span>
+          <img src="images/microphone.png" alt="Interview Preparation" class="w-12 h-12" loading="lazy" />
+          <span class="text-lg font-medium">Interview Preparation</span>
         </div>
       </div>
     </section>
 
     <!-- Exams -->
     <section id="exams">
-      <h2 class="text-3xl font-semibold mb-6" data-i18n="exams.title">Exams We Coach For</h2>
+      <h2 class="text-3xl font-semibold mb-6">Exams We Coach For</h2>
       <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
         <div class="bg-white rounded shadow p-6 flex items-center space-x-4">
-          <img src="images/medal.png" alt="UPSC Civil Services" class="w-12 h-12" />
-          <span class="text-lg font-medium" data-i18n="exams.upsc">UPSC Civil Services</span>
+          <img src="images/medal.png" alt="UPSC Civil Services" class="w-12 h-12" loading="lazy" />
+          <span class="text-lg font-medium">UPSC Civil Services</span>
         </div>
         <div class="bg-white rounded shadow p-6 flex items-center space-x-4">
-          <img src="images/briefcase.png" alt="SSC CGL" class="w-12 h-12" />
-          <span class="text-lg font-medium" data-i18n="exams.ssc">SSC CGL</span>
+          <img src="images/briefcase.png" alt="SSC CGL" class="w-12 h-12" loading="lazy" />
+          <span class="text-lg font-medium"> SSC CGL</span>
         </div>
         <div class="bg-white rounded shadow p-6 flex items-center space-x-4">
-          <img src="images/bank-building.png" alt="Bank PO" class="w-12 h-12" />
-          <span class="text-lg font-medium" data-i18n="exams.bankPO">Bank PO</span>
+          <img src="images/bank-building.png" alt="Bank PO" class="w-12 h-12" loading="lazy" />
+          <span class="text-lg font-medium">Bank PO</span>
         </div>
         <div class="bg-white rounded shadow p-6 flex items-center space-x-4">
-          <img src="images/train.png" alt="Railway Recruitment" class="w-12 h-12" />
-          <span class="text-lg font-medium" data-i18n="exams.railway">Railway Recruitment</span>
+          <img src="images/train.png" alt="Railway Recruitment" class="w-12 h-12" loading="lazy" />
+          <span class="text-lg font-medium">Railway Recruitment</span>
         </div>
         <div class="bg-white rounded shadow p-6 flex items-center space-x-4">
-          <img src="images/flag.png" alt="State PSC Exams" class="w-12 h-12" />
-          <span class="text-lg font-medium" data-i18n="exams.statePSC">State PSC Exams</span>
+          <img src="images/flag.png" alt="State PSC Exams" class="w-12 h-12" loading="lazy" />
+          <span class="text-lg font-medium">State PSC Exams</span>
         </div>
         <div class="bg-white rounded shadow p-6 flex items-center space-x-4">
-          <img src="images/shield.png" alt="Defence Exams" class="w-12 h-12" />
-          <span class="text-lg font-medium" data-i18n="exams.defence">Defence Exams</span>
+          <img src="images/shield.png" alt="Defence Exams" class="w-12 h-12" loading="lazy" />
+          <span class="text-lg font-medium">Defence Exams</span>
         </div>
       </div>
     </section>
 
     <!-- Testimonials -->
     <section id="testimonials" class="bg-white rounded shadow p-8">
-      <h2 class="text-3xl font-semibold mb-6 text-center" data-i18n="testimonials.title">What Our Students Say</h2>
+      <h2 class="text-3xl font-semibold mb-6 text-center">What Our Students Say</h2>
       <div class="space-y-6 max-w-3xl mx-auto">
-        <blockquote class="border-l-4 border-blue-700 pl-4 italic text-gray-700" data-i18n="testimonials.testimonial1">
+        <blockquote class="border-l-4 border-blue-700 pl-4 italic text-gray-700">
           "The coaching center helped me clear my UPSC exam with confidence. The teachers are very supportive and knowledgeable."
           <footer class="mt-2 font-semibold">- Priya S.</footer>
         </blockquote>
-        <blockquote class="border-l-4 border-blue-700 pl-4 italic text-gray-700" data-i18n="testimonials.testimonial2">
+        <blockquote class="border-l-4 border-blue-700 pl-4 italic text-gray-700">
           "Excellent coaching with a focus on practical knowledge and interview preparation. Highly recommended!"
           <footer class="mt-2 font-semibold">- Rahul K.</footer>
         </blockquote>
@@ -226,104 +272,119 @@
 
     <!-- Features -->
     <section id="features" class="space-y-6 text-center">
-      <h2 class="text-3xl font-semibold mb-6" data-i18n="features.title">Why Choose Us?</h2>
+      <h2 class="text-3xl font-semibold mb-6">Why Choose Us?</h2>
       <div class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto">
         <div class="bg-white rounded shadow p-6">
-          <img src="https://img.icons8.com/ios-filled/50/000000/teacher.png" alt="Expert Faculty" class="mx-auto mb-4" />
-          <h3 class="text-xl font-semibold mb-2" data-i18n="features.expertFaculty">Expert Faculty</h3>
-          <p data-i18n="features.expertFacultyDesc">Learn from experienced teachers with proven success records.</p>
+          <img src="https://img.icons8.com/ios-filled/50/000000/teacher.png" alt="Expert Faculty" class="mx-auto mb-4" loading="lazy" />
+          <h3 class="text-xl font-semibold mb-2">Expert Faculty</h3>
+          <p>Learn from experienced teachers with proven success records.</p>
         </div>
         <div class="bg-white rounded shadow p-6">
-          <img src="https://img.icons8.com/ios-filled/50/000000/classroom.png" alt="Offline Classes" class="mx-auto mb-4" />
-          <h3 class="text-xl font-semibold mb-2" data-i18n="features.offlineClasses">Offline Classes</h3>
-          <p data-i18n="features.offlineClassesDesc">Interactive offline coaching sessions for better learning.</p>
+          <img src="https://img.icons8.com/ios-filled/50/000000/classroom.png" alt="Offline Classes" class="mx-auto mb-4" loading="lazy" />
+          <h3 class="text-xl font-semibold mb-2">Offline Classes</h3>
+          <p>Interactive offline coaching sessions for better learning.</p>
         </div>
         <div class="bg-white rounded shadow p-6">
-          <img src="https://img.icons8.com/ios-filled/50/000000/clock.png" alt="Flexible Schedule" class="mx-auto mb-4" />
-          <h3 class="text-xl font-semibold mb-2" data-i18n="features.flexibleSchedule">Flexible Schedule</h3>
-          <p data-i18n="features.flexibleScheduleDesc">Classes scheduled to fit your convenience and pace.</p>
+          <img src="https://img.icons8.com/ios-filled/50/000000/clock.png" alt="Flexible Schedule" class="mx-auto mb-4" loading="lazy" />
+          <h3 class="text-xl font-semibold mb-2">Flexible Schedule</h3>
+          <p>Classes scheduled to fit your convenience and pace.</p>
         </div>
       </div>
     </section>
 
     <!-- Contact Form -->
-    <section id="contact">
-      <h2 class="text-3xl font-semibold mb-6" data-i18n="contact.title">Contact Us</h2>
-      <form class="max-w-lg space-y-4 mx-auto" id="contact-form" action="#" method="POST">
-        <div>
-          <label for="name" class="block font-medium mb-1" data-i18n="contact.name">Name</label>
-          <input type="text" id="name" name="name" required class="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500" />
-        </div>
-        <div>
-          <label for="phone" class="block font-medium mb-1">Phone Number</label>
-          <input type="tel" id="phone" name="phone" required class="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500" />
-        </div>
-        <div>
-          <label for="email" class="block font-medium mb-1" data-i18n="contact.email">Email</label>
-          <input type="email" id="email" name="email" required class="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500" />
-        </div>
-        <div>
-          <label for="message" class="block font-medium mb-1" data-i18n="contact.message">Message</label>
-          <textarea id="message" name="message" rows="4" required class="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"></textarea>
-        </div>
-        <button type="submit" class="bg-blue-700 text-white px-6 py-2 rounded hover:bg-blue-800 transition" data-i18n="contact.send">Send Enquiry</button>
-      </form>
-    </section>
+    <section id="contact" class="max-w-4xl mx-auto p-6 bg-white rounded shadow">
+      <h2 class="text-3xl font-semibold mb-6">Contact Us</h2>
+<div class="flex space-x-4 m-2">
+            <a href="https://facebook.com/mastermosaiacademy" target="_blank" rel="noopener" aria-label="Facebook" class="text-blue-600 hover:text-blue-800">
+              <svg class="w-6 h-6 fill-current" viewBox="0 0 24 24"><path d="M22 12a10 10 0 10-11.5 9.9v-7h-2v-3h2v-2c0-2 1-3 3-3h2v3h-2c-.5 0-1 .5-1 1v2h3l-1 3h-2v7A10 10 0 0022 12z"></path></svg>
+            </a>
+            <a href="https://twitter.com/mastermosaiacademy" target="_blank" rel="noopener" aria-label="Twitter" class="text-blue-400 hover:text-blue-600">
+              <svg class="w-6 h-6 fill-current" viewBox="0 0 24 24"><path d="M23 3a10.9 10.9 0 01-3 1 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z"></path></svg>
+            </a>
+            <a href="https://instagram.com/mastermosaiacademy" target="_blank" rel="noopener" aria-label="Instagram" class="text-pink-600 hover:text-pink-800">
+              <svg class="w-6 h-6 fill-current" viewBox="0 0 24 24"><path d="M7 2C4.243 2 2 4.243 2 7v10c0 2.757 2.243 5 5 5h10c2.757 0 5-2.243 5-5V7c0-2.757-2.243-5-5-5H7zm10 3a1 1 0 110 2 1 1 0 010-2zm-5 2a5 5 0 110 10 5 5 0 010-10zm0 2a3 3 0 100 6 3 3 0 000-6z"></path></svg>
+            </a>
+            <a href="https://t.me/mastermosaiacademy" target="_blank" rel="noopener" aria-label="Telegram" class="text-blue-500 hover:text-blue-700">
+              <svg class="w-6 h-6 fill-current" viewBox="0 0 24 24"><path d="M9.04 15.5l-.4 4.5c.57 0 .82-.25 1.12-.55l2.7-2.6 5.6 4.1c1.03.57 1.77.27 2.04-.95L23 6.5c.3-1.3-.45-1.9-1.3-1.6L2.5 10.7c-1.3.5-1.28 1.2-.22 1.5l5.9 1.8 13.7-8.6c.65-.4 1.25-.2.76.3"></path></svg>
+            </a>
+<a href="https://www.youtube.com/@MastermosaiAcademy" target="_blank" rel="noopener" aria-label="YouTube" class="text-red-600 hover:text-red-800">
+  <svg class="w-6 h-6 fill-current" viewBox="0 0 24 24"><path d="M 19.615 3.184 c -1.604 -0.11 -8.07 -0.11 -8.07 -0.11 s -6.466 0 -8.07 0.11 c -1.68 0.115 -2.98 1.42 -3.1 3.1 c -0.11 1.6 -0.11 4.94 -0.11 4.94 s 0 3.34 0.11 4.94 c 0.12 1.68 1.42 2.98 3.1 3.1 c 1.6 0.11 8.07 0.11 8.07 0.11 s 6.47 0 8.07 -0.11 c 1.68 -0.12 2.98 -1.42 3.1 -3.1 c 0.11 -1.6 0.11 -4.94 0.11 -4.94 s 0 -3.34 -0.11 -4.94 c -0.12 -1.68 -1.42 -2.98 -3.1 -3.1 z m -11.615 8.816 v -5 l 8 4 l -8 4 z"></path></svg>
+</a>
+          </div>
 
-  </main>
-
+          <div class="m-2">
+              <p>Phone: <a href="tel:+1234567890" class="text-blue-700 hover:underline">+1 234 567 890</a></p>
+<p>Email: <a href="mailto:info@mastermosaiacademy.com" class="text-blue-700 hover:underline">info@mastermosaiacademy.com</a></p>
+          </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div>
+          <h3 class="text-xl font-semibold mb-2">Kaliyaganj</h3>
+          <p>Mastermosai Academy</p>
+          <p>Hospital Para</p>
+          <p>Kaliyaganj</p>
+          <p>Uttar Dinajpur</p>
+          
+          
+<iframe title="Map of Hospital Para, Kaliyaganj" class="w-full mt-2 h-64 rounded shadow" src="https://maps.google.com/maps?q=25.63470513160867,88.3179053954308&z=15&output=embed" allowfullscreen loading="lazy"></iframe>
+          
+        </div>
+        <div><h3 class="text-xl font-semibold mb-2">Buniadpur</h3><p>Mastermosai Academy</p><p>Court More</p><p>Buniadpur</p><p>Dakshin Dinajpur </p>
+<iframe title="Map of Court More, Buniadpur" class="mt-2 w-full h-64 rounded shadow" src="https://maps.google.com/maps?q=25.39349476056225,88.39518109500781&z=15&output=embed" allowfullscreen loading="lazy"></iframe>
+       </div>
+     </section>
   <!-- FAQ Section -->
   <section id="faq" class="max-w-4xl mx-auto p-6 bg-white rounded shadow my-12">
-    <h2 class="text-3xl font-semibold mb-6 text-center" data-i18n="faq.title">Frequently Asked Questions</h2>
+    <h2 class="text-3xl font-semibold mb-6 text-center">Frequently Asked Questions</h2>
     <div class="space-y-4">
       <details class="border border-gray-300 rounded p-4">
-        <summary class="font-medium cursor-pointer" data-i18n="faq.q1">What exams do you provide coaching for?</summary>
-        <p class="mt-2 text-gray-700" data-i18n="faq.a1">We provide coaching for UPSC, SSC, Bank PO, Railway, State PSC, and Defence exams.</p>
+        <summary class="font-medium cursor-pointer">What exams do you provide coaching for?</summary>
+        <p class="mt-2 text-gray-700">We provide coaching for UPSC, SSC, Bank PO, Railway, State PSC, and Defence exams.</p>
       </details>
       <details class="border border-gray-300 rounded p-4">
-        <summary class="font-medium cursor-pointer" data-i18n="faq.q2">Are the classes offline or online?</summary>
-        <p class="mt-2 text-gray-700" data-i18n="faq.a2">Our coaching is primarily offline with interactive classroom sessions.</p>
+        <summary class="font-medium cursor-pointer">Are the classes offline or online?</summary>
+        <p class="mt-2 text-gray-700">Our coaching is primarily offline with interactive classroom sessions.</p>
       </details>
       <details class="border border-gray-300 rounded p-4">
-        <summary class="font-medium cursor-pointer" data-i18n="faq.q3">How can I contact the coaching center?</summary>
-        <p class="mt-2 text-gray-700" data-i18n="faq.a3">You can use the contact form on this page or call us at +1-234-567-890.</p>
+        <summary class="font-medium cursor-pointer">How can I contact the coaching center?</summary>
+        <p class="mt-2 text-gray-700">You can use the contact form on this page or call us at +1-234-567-890.</p>
       </details>
       <details class="border border-gray-300 rounded p-4">
-        <summary class="font-medium cursor-pointer" data-i18n="faq.q4">Do you provide study materials?</summary>
-        <p class="mt-2 text-gray-700" data-i18n="faq.a4">Yes, we provide comprehensive study materials as part of our courses.</p>
+        <summary class="font-medium cursor-pointer">Do you provide study materials?</summary>
+        <p class="mt-2 text-gray-700">Yes, we provide comprehensive study materials as part of our courses.</p>
       </details>
       <details class="border border-gray-300 rounded p-4">
-        <summary class="font-medium cursor-pointer" data-i18n="faq.q5">What is the duration of the courses?</summary>
-        <p class="mt-2 text-gray-700" data-i18n="faq.a5">Our courses typically range from 3 to 12 months depending on the exam and syllabus.</p>
+        <summary class="font-medium cursor-pointer">What is the duration of the courses?</summary>
+        <p class="mt-2 text-gray-700">Our courses typically range from 3 to 12 months depending on the exam and syllabus.</p>
       </details>
       <details class="border border-gray-300 rounded p-4">
-        <summary class="font-medium cursor-pointer" data-i18n="faq.q6">Do you offer any mock tests?</summary>
-        <p class="mt-2 text-gray-700" data-i18n="faq.a6">Yes, we conduct regular mock tests to help students assess their preparation.</p>
+        <summary class="font-medium cursor-pointer">Do you offer any mock tests?</summary>
+        <p class="mt-2 text-gray-700">Yes, we conduct regular mock tests to help students assess their preparation.</p>
       </details>
       <details class="border border-gray-300 rounded p-4">
-        <summary class="font-medium cursor-pointer" data-i18n="faq.q7">Are there any scholarships available?</summary>
-        <p class="mt-2 text-gray-700" data-i18n="faq.a7">We offer scholarships based on merit and financial need. Please contact us for details.</p>
+        <summary class="font-medium cursor-pointer">Are there any scholarships available?</summary>
+        <p class="mt-2 text-gray-700">We offer scholarships based on merit and financial need. Please contact us for details.</p>
       </details>
       <details class="border border-gray-300 rounded p-4">
-        <summary class="font-medium cursor-pointer" data-i18n="faq.q8">What is the batch size?</summary>
-        <p class="mt-2 text-gray-700" data-i18n="faq.a8">Our batch sizes are kept small to ensure personalized attention.</p>
+        <summary class="font-medium cursor-pointer">What is the batch size?</summary>
+        <p class="mt-2 text-gray-700">Our batch sizes are kept small to ensure personalized attention.</p>
       </details>
       <details class="border border-gray-300 rounded p-4">
-        <summary class="font-medium cursor-pointer" data-i18n="faq.q9">Can I switch courses after enrollment?</summary>
-        <p class="mt-2 text-gray-700" data-i18n="faq.a9">Yes, course switching is possible within the first two weeks of enrollment.</p>
+        <summary class="font-medium cursor-pointer">Can I switch courses after enrollment?</summary>
+        <p class="mt-2 text-gray-700">Yes, course switching is possible within the first two weeks of enrollment.</p>
       </details>
     </div>
   </section>
 
   <footer class="bg-blue-700 text-white p-4 text-center space-y-2">
-    <p>© 2024 Coaching Center. All rights reserved.</p>
+    <p>© 2025 Mastermosai Academy. All rights reserved.</p>
     <p>
-      <a href="https://www.youtube.com/@MastermosaiAcademy" target="_blank" rel="noopener" class="underline hover:text-gray-300" data-i18n="footer.youtube">YouTube Channel</a>
+      <a href="https://www.youtube.com/@MastermosaiAcademy" target="_blank" rel="noopener" class="underline hover:text-gray-300">YouTube Channel</a>
     </p>
     </footer>
 
     <!-- Sticky Call Now Button -->
-    <a href="tel:+1234567890" class="fixed bottom-6 right-6 bg-yellow-400 text-blue-900 font-bold px-6 py-3 rounded shadow-lg hover:bg-yellow-300 transition z-50" title="Call Now">
+    <a href="tel:+919851137532" class="fixed bottom-6 right-6 bg-yellow-400 text-blue-900 font-bold px-6 py-3 rounded shadow-lg hover:bg-yellow-300 transition z-50" title="Call Now">
       Call Now
     </a>
 
@@ -337,12 +398,13 @@
 
       // Contact form submission handler (dummy)
       const contactForm = document.getElementById('contact-form');
-      contactForm.addEventListener('submit', (e) => {
-        e.preventDefault();
-        alert('Thank you for your enquiry. We will get back to you soon.');
-        contactForm.reset();
-      });
-
+      if (contactForm) {
+        contactForm.addEventListener('submit', (e) => {
+          e.preventDefault();
+          alert('Thank you for your enquiry. We will get back to you soon.');
+          contactForm.reset();
+        });
+      }
     </script>
 
   </body>
