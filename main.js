@@ -13,6 +13,10 @@ mobileMenuLinks.forEach(link => {
   });
 });
 
+    function toggleCallOptions() {
+      const options = document.getElementById('callOptions');
+      options.classList.toggle('hidden');
+    }
 
 
 
