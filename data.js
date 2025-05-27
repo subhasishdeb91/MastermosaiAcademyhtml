@@ -57,7 +57,7 @@ function populateYouTubeVideos() {
   youtubeVideos.forEach(video => {
     const div = document.createElement("div");
     div.className = "rounded overflow-hidden shadow-lg";
-    div.innerHTML = `<iframe class="w-full" style="aspect-ratio: auto;" src="https://www.youtube.com/embed/${video.id}" title="${video.title}" frameborder="0" allowfullscreen loading="lazy"></iframe>`;
+    div.innerHTML = `<iframe class="w-full" style="aspect-ratio: 16/9;" src="https://www.youtube.com/embed/${video.id}" title="${video.title}" frameborder="0" allowfullscreen loading="lazy"></iframe>`;
     container.appendChild(div);
   });
 }

@@ -57,42 +57,14 @@
     </nav>
   </header>
 
-  <!-- Slider Banner Section -->
-  <section class="relative w-full overflow-hidden">
-    <div class="relative h-64 md:h-96">
-      <div class="absolute inset-0 transition-opacity duration-1000 ease-in-out opacity-100" style="background-image: url('images/banner1.jpg'); background-size: cover; background-position: center;" data-slide="0"></div>
-      <div class="absolute inset-0 transition-opacity duration-1000 ease-in-out opacity-0" data-bg="images/banner2.jpg" style="background-size: cover; background-position: center;" data-slide="1"></div>
-      <div class="absolute inset-0 transition-opacity duration-1000 ease-in-out opacity-0" data-bg="images/banner3.jpg" style="background-size: cover; background-position: center;" data-slide="2"></div>
-
+  <!-- Single Banner Section -->
+  <section class="relative w-full">
+    <div class="relative h-64 md:h-96" style="background-image: url('images/banner1.jpg'); background-size: cover; background-position: center;">
       <div class="absolute inset-0 bg-black bg-opacity-40 flex flex-col justify-center items-center text-center text-white px-4">
-        <div data-text="0" class="slide-text">
-          <h2 class="text-3xl md:text-5xl font-extrabold mb-4">Achieve Your Dream Government Job</h2>
-          <p class="text-lg md:text-xl mb-8 max-w-2xl">Join our coaching center for offline classes and expert guidance for competitive government exams.</p>
-          <a href="#contact" class="inline-block bg-yellow-400 text-blue-900 font-bold px-6 py-3 rounded shadow hover:bg-yellow-300 transition">Enquire Now</a>
-        </div>
-        <div data-text="1" class="slide-text hidden">
-          <h2 class="text-3xl md:text-5xl font-extrabold mb-4">Prepare for SSC and Bank Exams</h2>
-          <p class="text-lg md:text-xl mb-8 max-w-2xl">Expert coaching to help you succeed in SSC and Bank PO exams.</p>
-          <a href="#contact" class="inline-block bg-yellow-400 text-blue-900 font-bold px-6 py-3 rounded shadow hover:bg-yellow-300 transition">Join Now</a>
-        </div>
-        <div data-text="2" class="slide-text hidden">
-          <h2 class="text-3xl md:text-5xl font-extrabold mb-4">Excel in Railway and State PSC Exams</h2>
-          <p class="text-lg md:text-xl mb-8 max-w-2xl">Comprehensive training for Railway and State PSC competitive exams.</p>
-          <a href="#contact" class="inline-block bg-yellow-400 text-blue-900 font-bold px-6 py-3 rounded shadow hover:bg-yellow-300 transition">Get Started</a>
-        </div>
+        <h2 class="text-3xl md:text-5xl font-extrabold mb-4">Achieve Your Dream Government Job</h2>
+        <p class="text-lg md:text-xl mb-8 max-w-2xl">Join our coaching center for offline classes and expert guidance for competitive government exams.</p>
+        <a href="#contact" class="inline-block bg-yellow-400 text-blue-900 font-bold px-6 py-3 rounded shadow hover:bg-yellow-300 transition">Enquire Now</a>
       </div>
-
-      <!-- Navigation Buttons -->
-      <button id="prevSlide" class="absolute left-4 top-1/2 transform -translate-y-1/2 bg-black bg-opacity-50 text-white rounded-full p-2 hover:bg-opacity-75 focus:outline-none">
-        <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" />
-        </svg>
-      </button>
-      <button id="nextSlide" class="absolute right-4 top-1/2 transform -translate-y-1/2 bg-black bg-opacity-50 text-white rounded-full p-2 hover:bg-opacity-75 focus:outline-none">
-        <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
-        </svg>
-      </button>
     </div>
   </section>
   
@@ -345,7 +317,7 @@
   </section>
 
   <footer class="bg-blue-700 text-white p-4 text-center space-y-2">
-    <p>© 2025 Mastermosai Academy. All rights reserved.</p>
+    <p>© <span id="current-year">2025</span> Mastermosai Academy. All rights reserved.</p>
     <p>
       <a href="https://www.youtube.com/@MastermosaiAcademy" target="_blank" rel="noopener" class="underline hover:text-gray-300">YouTube Channel</a>
     </p>

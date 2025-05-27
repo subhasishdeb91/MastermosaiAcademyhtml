@@ -1,0 +1,32 @@
+{
+  "latestNotifications": [
+    "New batch starting from 1st July 2024. Enroll now!",
+    "Holiday on 15th August for Independence Day.",
+    "Free seminar on exam strategies on 20th June."
+  ],
+  "upcomingExams": [
+    "UPSC Prelims - 15th August 2024",
+    "SSC CGL Tier 1 - 10th September 2024",
+    "Bank PO Mains - 5th October 2024"
+  ],
+  "youtubeVideos": [
+    {
+      "title": "YouTube video 1",
+      "url": "https://www.youtube.com/embed/dQw4w9WgXcQ"
+    },
+    {
+      "title": "YouTube video 2",
+      "url": "https://www.youtube.com/embed/3JZ_D3ELwOQ"
+    },
+    {
+      "title": "YouTube video 3",
+      "url": "https://www.youtube.com/embed/L_jWHffIx5E"
+    }
+  ],
+  "contact": {
+    "phone": "+1 234 567 890",
+    "whatsapp": "1234567890",
+    "email": "info@mastermosaiacademy.com",
+    "youtubeChannel": "https://www.youtube.com/@MastermosaiAcademy"
+  }
+}

@@ -1,5 +1,13 @@
 // Embedded video data categorized by category
 const videoData = {
+    "Latest videos": [
+    { id: "dQw4w9WgXcQ", title: "General Studies Video 1" },
+    { id: "3JZ_D3ELwOQ", title: "General Studies Video 2" },
+    { id: "e-ORhEE9VVg", title: "General Studies Video 3" },
+    { id: "kXYiU_JCYtU", title: "General Studies Video 4" },
+    { id: "RgKAFK5djSk", title: "General Studies Video 5" },
+    { id: "fLexgOxsZu0", title: "General Studies Video 6" }
+  ],
   "General Studies": [
     { id: "dQw4w9WgXcQ", title: "General Studies Video 1" },
     { id: "3JZ_D3ELwOQ", title: "General Studies Video 2" },
@@ -40,7 +48,7 @@ function createVideoThumbnail(video) {
   div.className = "cursor-pointer rounded overflow-hidden shadow-lg hover:shadow-xl transition-shadow";
   div.title = video.title;
   div.innerHTML = `
-    <img src="https://img.youtube.com/vi/${video.id}/hqdefault.jpg" alt="${video.title}" class="w-full h-auto object-cover" loading="lazy" />
+    <div class="relative overflow-hidden pt-[56.25%]"><img src="https://img.youtube.com/vi/${video.id}/hqdefault.jpg" alt="${video.title}" class="w-full h-full object-cover absolute top-[50%] left-[50%] -translate-x-1/2 -translate-y-1/2" loading="lazy" /></div>
     <div class="p-2 text-center font-semibold text-gray-800">${video.title}</div>
   `;
   div.addEventListener("click", () => openVideoPopup(video.id));
