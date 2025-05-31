@@ -23,6 +23,12 @@ const videoData = {
     { id: "zQKmnMYpH_I", title: "ভগ্নাংশের বেসিক লেভেল রেমিডিয়াল ক্লাস" },
     { id: "FArYFq9XX2Y", title: "ভগ্নাংশের রেমিডিয়াল ক্লাস" }
     
+  ],
+    "WB-SSC": [
+    { id: "6OAukBbYJu8", title: "বহুভুজের অংকের বেসিক লেভেল ক্লাস 1 " },
+    { id: "6OAukBbYJu8", title: "বহুভুজের অংকের বেসিক লেভেল ক্লাস 1 " }
+
+    
   ]
   // ,
   // "Quantitative Aptitude": [

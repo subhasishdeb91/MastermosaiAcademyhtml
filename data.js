@@ -6,16 +6,16 @@ const latestNotifications = [
 ];
 
 const upcomingExams = [
-  { name: "UPSC Prelims", date: "15th August 2024", link: "https://example.com/upsc-prelims" },
+  { name: "WB SSC GROUP C", date: "September 2025",  },
   { name: "SSC CGL Tier 1", date: "10th September 2024", link: "https://example.com/ssc-cgl-tier1" },
   { name: "Bank PO Mains", date: "5th October 2024" },
   { name: "Bank PO Mains", date: "5th October 2024", link: "https://example.com/bank-po-mains" }
 ];
 
 const youtubeVideos = [
-  { id: "dQw4w9WgXcQ", title: "YouTube video 1" },
-  { id: "3JZ_D3ELwOQ", title: "YouTube video 2" },
-  { id: "L_jWHffIx5E", title: "YouTube video 3" }
+  { id: "ULnadm9XwGE", title: "YouTube video 1" },
+  { id: "2n4Yood6Fv0", title: "YouTube video 2" },
+  { id: "GSRTQLUlISw", title: "YouTube video 3" }
 ];
 
 // Function to populate Latest Notifications
